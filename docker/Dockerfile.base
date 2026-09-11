@@ -1,0 +1,6 @@
+FROM ghcr.io/cyber-dojo-languages/csharp:2ea42bf
+LABEL maintainer=jon@jaggersoft.com
+
+USER sandbox
+COPY . .
+RUN ./install.sh

@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Taken from the .NET that is installed, rather than written out, so
+         this keeps naming the right one as .NET is updated. Microsoft.NET.Sdk
+         sets NETCoreSdkVersion before this group is read. -->
+    <TargetFramework>net$([System.Version]::Parse($(NETCoreSdkVersion)).Major).0</TargetFramework>
+
+    <!-- Both are needed. Without them an MSTest project is a library that a
+         separate runner loads: running the assembly does nothing and exits 0,
+         and compiling a kata against it fails with
+           error CS5001: Program does not contain a static 'Main' method
+         With them it is a program that runs its own tests, which is what lets
+         a kata be compiled by csc and started directly. -->
+    <OutputType>Exe</OutputType>
+    <EnableMSTestRunner>true</EnableMSTestRunner>
+
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest" Version="4.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+  </ItemGroup>
+
+</Project>
