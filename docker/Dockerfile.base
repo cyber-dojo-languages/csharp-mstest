@@ -1,6 +1,13 @@
-FROM ghcr.io/cyber-dojo-languages/csharp:2ea42bf
+FROM ghcr.io/cyber-dojo-languages/csharp:4cae4a6
 LABEL maintainer=jon@jaggersoft.com
 
 USER sandbox
 COPY . .
 RUN ./install.sh
+
+# /versions.json belongs to root, so the packages install.sh put in the
+# sandbox user's NuGet cache are recorded as root, and the image then goes
+# back to the sandbox user it ran as before.
+USER root
+RUN bash ./record_versions.sh && rm ./record_versions.sh
+USER sandbox

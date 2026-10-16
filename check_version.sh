@@ -9,7 +9,7 @@ readonly IMAGE_NAME="${BASH_REMATCH[1]}"
 # Written down here so the gate fails when a rebuild resolves a different
 # MSTest. Reading it from the image instead would compare the image against
 # itself and pass whatever the rebuild brought in.
-readonly EXPECTED=4.0
+readonly EXPECTED=4.5
 
 # Asks for the assembly the kata is actually compiled against, so the gate
 # fails when the MSTest the image has is not the one named above. Matching on

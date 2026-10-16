@@ -72,22 +72,6 @@ rm -f "${REFS_DIR}/seed.dll"
 mkdir -p "${ENTRY_DIR}"
 cp /MSTestEntryPoint.cs "${ENTRY_DIR}/"
 
-# Read by check_version.sh, so the gate states the version this image holds
-# rather than one written down when someone last edited it. nuget unpacks each
-# package into a directory named for the version it resolved, so that is what
-# is read: the version that actually arrived, not the one asked for.
-#
-# It goes in HOME rather than at / because this script runs as sandbox, which
-# owns nothing above its own home.
-readonly MSTEST_VERSION=$(ls "${HOME}/.nuget/packages/mstest.testframework/" | head -1)
-
-if [ -z "${MSTEST_VERSION}" ]; then
-  >&2 echo 'ERROR: could not read the resolved mstest version'
-  exit 1
-fi
-
-echo "{\"mstest\":\"${MSTEST_VERSION}\"}" > "${HOME}/versions.json"
-
 cd /
 rm -rf "${SEED_DIR}"
 
