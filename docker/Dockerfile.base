@@ -1,4 +1,4 @@
-FROM ghcr.io/cyber-dojo-languages/csharp:4cae4a6
+FROM ghcr.io/cyber-dojo-languages/csharp:988f4a1@sha256:53ace937bc9fad96b4bbe494fe45972fefc904b76c6153be1f682892f9db6b6f
 LABEL maintainer=jon@jaggersoft.com
 
 USER sandbox
